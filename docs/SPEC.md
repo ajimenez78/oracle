@@ -1,6 +1,6 @@
 # SPEC: Notion Knowledge Assistant (Serverless Microservices RAG)
 
-> Status: Draft v0.3 · Audience: AI coding agents and human reviewers
+> Status: Draft v0.4 · Audience: AI coding agents and human reviewers
 > This document is the source of truth. If code and spec disagree, the spec wins until the spec is amended in a reviewed change.
 > Changes from v0.2: architecture is microservices (three domain services plus a platform stack), replacing the hexagonal layering. Infrastructure remains the Serverless Framework.
 > Changes from v0.3: refined using an analysis of the legacy PoC code (section 10): page-level Notion traversal, chunk metadata, follow-up handling, provider defaults and an evaluation baseline.
