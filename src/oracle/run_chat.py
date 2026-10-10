@@ -2,10 +2,10 @@ import os
 from dotenv import load_dotenv
 import gradio as gr
 from langchain_openai import ChatOpenAI
-from langchain.memory import ConversationBufferMemory
+from langchain_classic.memory import ConversationBufferMemory
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
-from langchain.chains import ConversationalRetrievalChain
+from langchain_classic.chains import ConversationalRetrievalChain
 
 MODEL = 'gpt-4o-mini'
 CHROMA_COLLECTION_NAME = 'notion_notes'
