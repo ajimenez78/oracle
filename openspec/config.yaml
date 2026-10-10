@@ -30,3 +30,7 @@ schema: spec-driven
 #     archive:
 #       guidance:
 #         - Summarize the archive outcome before finishing
+context: |
+     Tech stack: Python, Django, aws
+     We use conventional commits
+     Domain: Personal assistant
