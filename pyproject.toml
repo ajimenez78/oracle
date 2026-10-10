@@ -7,7 +7,11 @@ authors = [
     { name = "Arturo Jiménez de los Galanes Reguillos", email = "arturo.jimenezdelosgalanes@outsourcing.moeveglobal.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "dotenv>=0.9.9",
+    "gradio>=6.30.0",
+    "langchain>=1.4.4",
+]
 
 [project.scripts]
 oracle = "oracle:main"
