@@ -2,6 +2,8 @@ import os
 from dotenv import load_dotenv
 from typing import List, Dict, Any
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util import Retry
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -31,32 +33,88 @@ headers = {
     'Notion-Version': NOTION_VERSION
 }
 
+NOTION_TIMEOUT = (5, 30)  # (connect, read) seconds
+
+# Retry rate limits (429, honoring Retry-After) and transient errors with exponential backoff and jitter
+notion_retry = Retry(
+    total=5,
+    backoff_factor=1,
+    backoff_jitter=1,
+    status_forcelist=[429, 500, 502, 503, 504],
+    allowed_methods={"GET"},
+    respect_retry_after_header=True,
+    raise_on_status=False,
+)
+session = requests.Session()
+session.headers.update(headers)
+session.mount('https://', HTTPAdapter(max_retries=notion_retry))
+session.mount('http://', HTTPAdapter(max_retries=notion_retry))
+
+# Blocks and pages skipped because Notion returned an error, reported at the end of the run
+skipped: List[Dict[str, Any]] = []
+
+class NotionRequestError(Exception):
+    """A Notion request failed with an error status or after exhausting retries."""
+    def __init__(self, target_id: str, status: Any, code: str | None = None):
+        super().__init__(f"Notion request for {target_id} failed: {status} {code or ''}".strip())
+        self.target_id = target_id
+        self.status = status
+        self.code = code
+
+def notion_get(url: str, target_id: str, params: Dict[str, Any] | None = None) -> Dict[Any, Any]:
+    """GET a Notion endpoint and return its JSON, raising NotionRequestError on any failure."""
+    try:
+        response = session.get(url, params=params, timeout=NOTION_TIMEOUT)
+    except requests.exceptions.Timeout:
+        raise NotionRequestError(target_id, "timeout")
+    except requests.RequestException:
+        raise NotionRequestError(target_id, "connection")
+
+    if not response.ok:
+        try:
+            code = response.json().get("code")
+        except ValueError:
+            code = None
+        raise NotionRequestError(target_id, response.status_code, code)
+
+    return response.json()
+
+def record_skip(error: NotionRequestError, kind: str, block_type: str | None = None) -> None:
+    """Remember a skipped block subtree or root page and warn about it (ids and error codes only)."""
+    entry = {"kind": kind, "id": error.target_id, "block_type": block_type, "status": error.status, "code": error.code}
+    skipped.append(entry)
+    print(f"WARNING: skipped {describe_skip(entry)}")
+
+def describe_skip(entry: Dict[str, Any]) -> str:
+    block_type = f" ({entry['block_type']})" if entry["block_type"] else ""
+    code = f" {entry['code']}" if entry["code"] else ""
+    return f"{entry['kind']} {entry['id']}{block_type}: {entry['status']}{code}"
+
 def get_block_children(block_id: str) -> List[Dict[Any, Any]]:
     """Recursively fetch all children blocks of a given block."""
     url = NOTION_API_BASE_URL + NOTION_API_RETRIEVE_BLOCK_CHILDREN_ENDPOINT.format(block_id=block_id)
-    response = requests.get(url, headers=headers)
-    data = response.json()
-    
+    data = notion_get(url, block_id)
+
     results = data["results"]
-    
+
     # Handle pagination
     while data.get("has_more", False):
-        next_cursor = data["next_cursor"]
-        response = requests.get(
-            f"{url}?start_cursor={next_cursor}",
-            headers=headers
-        )
-        data = response.json()
+        data = notion_get(url, block_id, params={"start_cursor": data["next_cursor"]})
         results.extend(data["results"])
-    
+
     # Process each block recursively if it has children
     all_blocks = []
     for block in results:
         all_blocks.append(block)
-        
+
         # Check if the block has children
         if block.get("has_children", False):
-            child_blocks = get_block_children(block["id"])
+            try:
+                child_blocks = get_block_children(block["id"])
+            except NotionRequestError as error:
+                # Keep the block itself, skip only its descendants
+                record_skip(error, "block subtree", block_type=block.get("type"))
+                continue
             all_blocks.extend(child_blocks)
     
     return all_blocks
@@ -105,8 +163,7 @@ def get_page_content(page_id: str) -> Dict[str, Any]:
     """Get all content from a Notion page including its properties and blocks."""
     # Get page properties
     page_url = NOTION_API_BASE_URL + NOTION_API_RETRIEVE_PAGE_ENDPOINT.format(page_id=page_id)
-    response = requests.get(page_url, headers=headers)
-    page_data = response.json()
+    page_data = notion_get(page_url, page_id)
     
     # Get page title
     title = ""
@@ -157,12 +214,18 @@ def vectorize_notion_notes(page_ids: list[str], collection_name: str = "notion_n
         length_function=len,
     )
 
+    skipped.clear()
+
     # Process each page
     for page_id in page_ids:
         print(f"Processing page: {page_id}")
-        
-        # Get page content
-        page_data = get_page_content(page_id)
+
+        # Get page content; a failing root is skipped so the other roots still get indexed
+        try:
+            page_data = get_page_content(page_id)
+        except NotionRequestError as error:
+            record_skip(error, "root page")
+            continue
         
         # Split text into chunks
         chunks = text_splitter.split_text(page_data["content"])
@@ -184,9 +247,18 @@ def vectorize_notion_notes(page_ids: list[str], collection_name: str = "notion_n
                 ids=[f"{page_id}-chunk-{i}" for i in range(len(chunks))]
             )
     
-    # Persist the database
+    # Report what was skipped because of Notion errors
+    if skipped:
+        print(f"Skipped {len(skipped)} item(s) because of Notion errors:")
+        for entry in skipped:
+            print(f"  - {describe_skip(entry)}")
+    else:
+        print("Nothing skipped.")
+
+    # Chroma persists to persist_directory automatically
     print(f"Vectorization complete! Stored in {db_name}")
-    
+
     return vectordb
 
-vectorstore = vectorize_notion_notes(page_ids=RELEVANT_PAGE_IDS)
+if __name__ == "__main__":
+    vectorstore = vectorize_notion_notes(page_ids=RELEVANT_PAGE_IDS)
