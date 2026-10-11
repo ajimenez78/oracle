@@ -8,7 +8,6 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-MODEL = 'gpt-4o-mini'
 db_name = 'personal_vector_db'
 NOTION_API_BASE_URL = 'https://api.notion.com'
 NOTION_API_RETRIEVE_BLOCK_CHILDREN_ENDPOINT = '/v1/blocks/{block_id}/children'
