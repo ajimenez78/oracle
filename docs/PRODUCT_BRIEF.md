@@ -21,6 +21,7 @@ El sistema migrará de un prototipo local funcional (Gradio + DB local) a una ar
 ### Fuera del Alcance (Exclusiones del MVP)
 * **Sincronización en tiempo real (Webhooks):** El sistema no reaccionará instantáneamente cuando el usuario edite Notion; la actualización se gatillará manualmente desde la app o mediante una tarea periódica en segundo plano.
 * **Escritura en Notion:** El sistema es de solo lectura; el LLM no creará ni modificará páginas en el espacio de Notion del usuario.
+* **Otros pasos del método 'Second Brain': Capturar, Organizar y Destilar:** Aunque son acciones subsceptibles de ser potenciadas por IA, estas funcionalidades quedan fuera del primer MVP.
 
 ## ⚠️ Restricciones y Riesgos
 
