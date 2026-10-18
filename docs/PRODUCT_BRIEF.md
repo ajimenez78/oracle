@@ -13,7 +13,7 @@ El sistema migrará de un prototipo local funcional (Gradio + DB local) a una ar
 ## 🛑 Alcance y Exclusiones
 
 ### Dentro del Alcance (MVP)
-* **Ingesta mediante API de Notion:** Sincronización bajo demanda (mediante un botón en la interfaz) que lee las páginas autorizadas por el usuario a través de la integración oficial de Notion.
+* **Ingesta mediante API de Notion:** Sincronización bajo demanda (mediante un botón en la interfaz o un proceso periódico en segundo plano) que lee las páginas autorizadas por el usuario a través de la integración oficial de Notion.
 * **Pipeline RAG en la Nube:** Fragmentación de bloques de texto, generación de *embeddings* e indexación en base de datos vectorial persistida en la nube.
 * **Interfaz de Usuario Web:** Aplicación React (Chatbot) que sustituirá a la interfaz de Gradio para permitir despliegues estáticos económicos.
 * **Trazabilidad:** Las respuestas del chat incluirán enlaces directos o nombres de las páginas de Notion utilizadas como contexto.
