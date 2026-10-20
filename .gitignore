@@ -219,3 +219,6 @@ __marimo__/
 
 # Database
 personal_vector_db/
+
+# Node modules
+node_modules/
