@@ -29,7 +29,3 @@ Your note content is sent only to the configured AI provider (OpenAI by default)
 ## Legacy proof of concept
 
 `legacy/` contains the first prototype: `vectorize.py` indexes four Notion root pages into a local Chroma database, and `run_chat.py` starts a Gradio chat over it using LangChain. It is kept for reference and as the quality baseline the new system must meet or beat. It is not part of the new architecture.
-
-## License
-
-[MIT](LICENSE)
