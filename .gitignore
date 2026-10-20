@@ -222,3 +222,7 @@ personal_vector_db/
 
 # Node modules
 node_modules/
+
+# Serverless Framework
+.serverless/
+src/.requirements/

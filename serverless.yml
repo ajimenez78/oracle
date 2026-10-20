@@ -1,0 +1,55 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: moeve
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: oracle
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: oracle
+
+custom:
+  wsgi:
+    app: src/app.app
+    # Dependencies are installed once by the built-in python requirements
+    # packaging below; serverless-wsgi must not pip-install a second copy.
+    packRequirements: false
+  # Built-in python requirements packaging activates on this key.
+  pythonRequirements:
+    # Lambda deps come only from requirements.txt. Without these flags the
+    # packager exports the whole local app from uv.lock/pyproject.toml.
+    fileName: requirements.txt
+    useUv: false
+    usePoetry: false
+
+provider:
+  name: aws
+  runtime: python3.14
+  architecture: arm64
+  profile: AdministratorAccess-891377214100
+  region: eu-south-2
+  # Uncomment to easily set up a custom domain. Read the docs for more details:
+  # https://www.serverless.com/framework/docs/providers/aws/guide/domains
+  # domain: api.example.com
+
+package:
+  # Python requirements and serverless-wsgi shims (wsgi_handler.py,
+  # serverless_wsgi.py) are injected after these patterns are applied.
+  patterns:
+    - '!**'
+    - 'src/**'
+    - '!src/**/__pycache__/**'
+    - '!src/**/*.pyc'
+    - '!src/**/CLAUDE.md'
+    - '!src/.requirements/**'
+
+functions:
+  api:
+    handler: wsgi_handler.handler
+    events:
+      - http:
+          path: /
+          method: ANY
+      - http:
+          path: /{proxy+}
+          method: ANY
+
+plugins:
+  - serverless-wsgi
