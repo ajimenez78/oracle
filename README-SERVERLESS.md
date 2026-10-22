@@ -152,7 +152,7 @@ Which should result in the following response:
 
 _Note_: use `serverless offline start`, not `serverless offline`. Only the `start` form generates the `wsgi_handler.py` shim that `serverless-wsgi` needs, so with bare `serverless offline` every request fails with `ModuleNotFoundError: No module named 'wsgi_handler'`.
 
-Stop the server with `Ctrl+C`. This removes the generated `wsgi_handler.py`, `serverless_wsgi.py` and `.serverless-wsgi` files from the project root. If the server was killed and they were left behind, remove them with:
+Stop the server with `Ctrl+C`. This leaves the generated `wsgi_handler.py`, `serverless_wsgi.py` and `.serverless-wsgi` files in the project root, because `serverless-offline` exits before `serverless-wsgi` can clean up. Remove them after stopping, and don't commit them:
 
 ```
 serverless wsgi clean

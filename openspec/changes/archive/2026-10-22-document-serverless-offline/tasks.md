@@ -5,4 +5,4 @@
 ## 2. Verification
 
 - [x] 2.1 Follow the new subsection from a fresh shell. Run `serverless offline start` and `curl http://localhost:3000/dev/hello`, and verify the response is HTTP 200 `{"message": "Hello from path!"}` with no `ModuleNotFoundError` in the server log
-- [ ] 2.2 Stop the server with Ctrl+C. Verify that `wsgi_handler.py`, `serverless_wsgi.py` and `.serverless-wsgi` are no longer in the repo root, as the README states
+- [x] 2.2 Stop the server with Ctrl+C and run `serverless wsgi clean`. Verify that `wsgi_handler.py`, `serverless_wsgi.py` and `.serverless-wsgi` are no longer in the repo root, as the README states. (Ctrl+C alone leaves them behind: serverless-offline exits during `offline:start:end`, before serverless-wsgi's `after:offline:start:end` cleanup hook runs.)
