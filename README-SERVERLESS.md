@@ -119,3 +119,41 @@ serverless wsgi serve
 ```
 
 For additional local development capabilities of `serverless-wsgi` plugin, please refer to corresponding [GitHub repository](https://github.com/logandk/serverless-wsgi).
+
+#### Run locally with serverless-offline
+
+`serverless wsgi serve` runs Flask directly. To run the app through the same Lambda handler and API Gateway routes used in AWS, use `serverless-offline` instead.
+
+Install the Node plugins, then activate a virtual environment that has the Lambda dependencies installed. `serverless-offline` runs the handler with the `python3` of the active virtual environment:
+
+```
+npm install
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Start the emulated API Gateway with:
+
+```
+serverless offline start
+```
+
+Check that it works by calling the `/hello` path:
+
+```
+curl http://localhost:3000/dev/hello
+```
+
+Which should result in the following response:
+
+```json
+{ "message": "Hello from path!" }
+```
+
+_Note_: use `serverless offline start`, not `serverless offline`. Only the `start` form generates the `wsgi_handler.py` shim that `serverless-wsgi` needs, so with bare `serverless offline` every request fails with `ModuleNotFoundError: No module named 'wsgi_handler'`.
+
+Stop the server with `Ctrl+C`. This removes the generated `wsgi_handler.py`, `serverless_wsgi.py` and `.serverless-wsgi` files from the project root. If the server was killed and they were left behind, remove them with:
+
+```
+serverless wsgi clean
+```
