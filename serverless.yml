@@ -21,7 +21,7 @@ custom:
 
 provider:
   name: aws
-  runtime: python3.14
+  runtime: python3.12
   architecture: arm64
   profile: AdministratorAccess-891377214100
   region: eu-south-2
@@ -54,3 +54,4 @@ functions:
 plugins:
   - serverless-wsgi
   - serverless-offline
+  

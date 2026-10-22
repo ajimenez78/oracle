@@ -226,3 +226,8 @@ node_modules/
 # Serverless Framework
 .serverless/
 src/.requirements/
+
+# Self generated wsgi files
+.serverless-wsgi
+serverless_wsgi.py
+wsgi_handler.py
