@@ -1,13 +1,17 @@
 from dotenv import load_dotenv
 from flask import Flask, jsonify, make_response
-import boto3
+from openai import OpenAI  
 import os
 
 load_dotenv(override=True)
 os.environ['AWS_BEARER_TOKEN_BEDROCK'] = os.getenv('AWS_BEARER_TOKEN_BEDROCK')
+os.environ['OPENAI_API_KEY'] = os.getenv('OPENAI_API_KEY')
+os.environ['OPENAI_BASE_URL'] = os.getenv('OPENAI_BASE_URL')
+
 
 app = Flask(__name__)
-llm_client = boto3.client("bedrock-runtime", region_name="eu-south-2")
+
+llm_client = OpenAI()
 
 @app.route("/")
 def hello_from_root():
@@ -21,17 +25,14 @@ def hello():
 
 @app.route("/bedrockTest")
 def bedrock_test():
-    response = llm_client.converse( 
-        modelId="eu.anthropic.claude-haiku-4-5-20251001-v1:0", 
-        messages=[ 
-            { 
-                "role": "user", 
-                "content": [{"text": "Write a one-sentence bedtime story about a unicorn."}]
-            } 
+    response = llm_client.responses.create( 
+        model="openai.gpt-oss-120b", 
+        input=[ 
+            {"role": "user", "content": "Write a one-sentence bedtime story about a unicorn."} 
         ] 
     )  
 
-    return response["output"]["message"]["content"][0]["text"]
+    return response.output_text
 
 
 @app.errorhandler(404)
