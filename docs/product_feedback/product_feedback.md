@@ -109,7 +109,38 @@ Roberto consultó a dos profesoras de inglés que usan mucho Notion. Este feedba
 
 ## 5. Conclusiones de la reunión de equipo
 
-[Paso 4. Qué acordó el equipo y cómo cambió el plan.]
+En la reunión de seguimiento, el equipo revisó la dirección del proyecto y organizó el trabajo de validación.
+
+### Qué acordamos
+
+- **Pasar de las demostraciones técnicas a la validación de producto.** El proyecto nació para practicar ingeniería. Patri pidió un enfoque más orientado a producto, y el equipo lo aceptó aun sabiendo que suponía trabajo adicional antes de implementar. El trabajo previo de arquitectura no se descarta.
+- **Validar antes de construir.** Antes de la siguiente reunión de Product Feedback debíamos identificar usuarios objetivo, hacer al menos una entrevista o encuesta asíncrona y documentar alternativas y competidores.
+- **Buscar usuarios en sus comunidades.** Reddit, Twitter, Facebook y LinkedIn, con publicaciones abiertas y contacto personal con quienes respondieran.
+- **Preparar tres entregables para la presentación del día 11:** información validada de usuarios, alternativas y competidores documentados, y una propuesta de valor que indique qué se construirá y qué no.
+
+### Qué pensábamos entonces
+
+El problema de partida era que los usuarios capturan y organizan notas, pero rara vez las usan para crear resultados (la etapa *Express*). Arturo lo había observado en las comunidades de *Second Brain*, y el equipo lo reconoció como un problema real, también en su propia experiencia. Como Notion y otras herramientas ya cubren parte del flujo, la diferenciación se buscaba precisamente ahí.
+
+Con esa idea, Roberto propuso:
+
+- recomendar cosas concretas que crear a partir de las notas existentes, como un artículo o una práctica de vocabulario, y permitir crearlas con un clic;
+- generar automáticamente informes, diapositivas o artículos, con referencias a las notas de origen;
+- combinar el chat con recomendaciones proactivas.
+
+Eran propuestas del equipo, pendientes de contrastar con usuarios.
+
+### Qué ha pasado desde entonces
+
+| Compromiso | Responsable | Estado |
+| --- | --- | --- |
+| Publicar y gestionar el hilo de Reddit | Arturo | Hecho (ver [4.1](#41-metodología-y-limitaciones)) |
+| Contactar con usuarios que usan mucho Notion | Roberto | Hecho (ver [4.3](#43-feedback-de-usuarias-de-notion)) |
+| Buscar comunidades en Facebook y LinkedIn | Roberto | Sin resultados documentados |
+| Documentar alternativas y competidores | Equipo | Pendiente (sección 6) |
+| Definir qué se construye y qué no | Equipo | Pendiente (sección 9) |
+
+**El principal cambio:** la investigación no confirmó el punto de partida. Las conversaciones no demostraron que los participantes tengan una necesidad no cubierta en *Express*; la señal más clara apareció antes, al organizar y recuperar la información. Por eso el equipo ha replanteado la prioridad, como se explica en la [sección 9](#9-decisión-sobre-el-mvp).
 
 ## 6. Competidores y alternativas
 
