@@ -264,7 +264,28 @@ Esta propuesta solo se sostiene si se cumplen estas condiciones, y ninguna está
 
 ## 8. Hipótesis
 
-[Paso 7. Cada hipótesis, la evidencia que la apoya y cómo la validaríamos.]
+Son las suposiciones que deben cumplirse para que la propuesta de la [sección 7](#7-propuesta-de-diferenciación) funcione. Están ordenadas por prioridad: primero, las que harían caer la propuesta y se pueden comprobar con menos esfuerzo. Ninguna está validada, y los umbrales concretos se fijarán en la [sección 11](#11-próximos-pasos).
+
+| # | Hipótesis | Evidencia actual | Cómo validarla | Qué la refutaría |
+| --- | --- | --- | --- | --- |
+| **H1** | Para algunos usuarios de Notion, tener su espacio desordenado es un problema que quieren resolver | **Débil.** e3e6, una anécdota en el foro de Obsidian y ninguna encuesta | Hablar con las profesoras y con más usuarios de Notion sobre su última dificultad real con sus notas | Que el dolor real esté en otra parte, como tareas o recuperación, o que no les importe lo suficiente para actuar |
+| **H2** | Un espacio ordenado mejora la recuperación y el uso de las notas, también con búsqueda por IA | **Abierta.** Solo estudios anteriores a los modelos de lenguaje y anécdotas, con opiniones en ambos sentidos | Hacer las mismas preguntas a una IA antes y después de ordenar el espacio de un *beta tester* | Que las respuestas no mejoren de forma apreciable |
+| **H3** | Un flujo guiado es claramente mejor que pedírselo directamente a Notion AI o a Claude | **Sin probar.** Solo comparamos documentación | Reorganizar copias del mismo espacio con las tres opciones y comparar tiempo, errores y correcciones | Que Notion AI o Claude logren un resultado similar con un esfuerzo parecido |
+| **H4** | Los usuarios confiarán en las sugerencias y permitirán escribir en su espacio si pueden revisar y deshacer | **Anecdótica.** Una petición de aprobar cada movimiento | Medir sugerencias aceptadas, cambios revertidos y tiempo de revisión con usuarios reales | Que rechacen muchas sugerencias, no concedan permisos o la revisión les resulte pesada |
+| **H5** | Una vez ordenado el espacio, seguirán usando Oracle para mantenerlo | **Débil.** Los usuarios se quejan del mantenimiento, pero no hay datos de uso continuado | Observar si los *beta testers* siguen usándolo tras la primera limpieza | Que sea un uso puntual, lo que debilitaría un modelo de suscripción |
+| **H6** | Personas no técnicas en planes Free o Plus pagarían por esto | **Sin datos.** Solo sabemos que estos planes no incluyen la IA de Notion más allá de una prueba | Preguntar qué plan usan y pedir un compromiso concreto de pago | Que nadie se comprometa, o que estén en planes que ya incluyen la IA de Notion |
+| **H7** | PARA es un buen mapa de partida, siempre que se pueda adaptar | **Débil.** Es una idea del equipo, ningún participante lo pidió y sus límites ambiguos son una queja repetida | Ver cuánto modifican los usuarios el mapa propuesto | Que lo cambien casi siempre o que no lo entiendan |
+
+**Primeros pasos, por ser los más baratos:**
+
+- **H1 y H6:** preguntar a las profesoras si su problema son tareas o notas, si siguen un sistema de *Second Brain* y qué plan de Notion usan. Es una conversación breve que Roberto puede tener.
+- **H2 y H3:** requieren pruebas prácticas que no hemos podido hacer antes de esta presentación. Son las primeras pruebas pendientes después de ella.
+
+### Hipótesis que dejamos para más adelante
+
+- **Asistente de trabajo (*Express*):** ayudar a usar las notas en proyectos relevantes puede tener mucho potencial, pero las conversaciones no demostraron que exista esa necesidad.
+- **Asistente conversacional:** puede ser valioso, pero Notion AI y los asistentes generales ya ofrecen chat sobre las notas.
+- **Varias fuentes:** conectar otras aplicaciones respondería al problema de e3e6, pero no entra en un primer producto centrado en Notion.
 
 ## 9. Decisión sobre el MVP
 
