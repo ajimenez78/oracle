@@ -6,4 +6,4 @@
 6. Do a brief proposal of the first selected solutions
 7. Scaffold some hypothesis
 8. Take the decission of which feature implement in MVP
-9. Do a draft if the final document. Imanol Sitill will add the AI justification part and Roberto will do the last review and redaction.
+9. Do a draft if the final document. Imanol Still will add the AI justification part and Roberto will do the last review and redaction.
