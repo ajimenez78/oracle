@@ -13,6 +13,7 @@ To achieve that goal, we need to generate a comprehensive markdown document for 
 - The artifacts of this phase redefine the scope of the whole project.
 - `docs/PRODUCT_BRIEF.md`, `docs/SPEC.md`, `docs/CLOUD_DESIGN.md` and the current code are history and starting context, not constraints. Use them to explain where we come from and what could be reused.
 - Do not update those files during this phase.
+- The 8-week window in `docs/PRODUCT_BRIEF.md` does not apply for now, so do not treat it as a limit on the MVP.
 
 ## Evidence rules
 - Keep user reports, team interpretations and hypotheses clearly separated.
