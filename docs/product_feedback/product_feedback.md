@@ -1,18 +1,38 @@
 # Oracle: aprendizajes de la fase de Product Feedback
 
-> **Estado:** borrador en curso. Las notas entre corchetes indican qué falta y en qué paso de `PLAN.md` se completa.
+> **Estado:** borrador. Falta la justificación de la IA, que añadirá Imanol, y la revisión final de Roberto.
 
 ## 1. Resumen ejecutivo
 
-[Paso 9. El problema identificado, qué hemos aprendido y qué vamos a construir, en pocas líneas.]
+**El problema.** Algunas personas que toman notas de forma sistemática tienen dificultades para organizarlas y encontrarlas después. El caso más claro es el de e3e6, en r/secondbrain: a veces no escribe nada porque no sabe dónde ponerlo, y otras veces no encuentra lo que apuntó.
+
+**Qué hemos aprendido.**
+
+- Empezamos pensando que el gran problema era usar las notas para crear resultados (la etapa *Express*). Las conversaciones señalaron antes un problema de organización y recuperación.
+- La simplicidad es clave: quien ya tiene un método que le funciona no quiere otro sistema que mantener.
+- El mayor competidor es la propia Notion, seguida de Claude o ChatGPT conectados a Notion. Aun así, hay una combinación de funciones que no vimos documentada en ninguna herramienta revisada.
+
+**Qué vamos a construir.** Un asistente que ordena el Notion que el usuario ya tiene: audita, propone un mapa de organización, pregunta solo por las notas dudosas y aplica los cambios que el usuario aprueba, con opción de deshacer. El asistente de trabajo para proyectos y el chatbot quedan para más adelante.
+
+**Con qué base lo decimos.** La muestra es pequeña para considerarse un problema amplio, pero es un problema que parece recurrente. Dos profesoras que usan mucho Notion están disponibles como *beta testers*, y el desarrollo del MVP nos permitirá comprobar las hipótesis con uso real.
 
 ## 2. Punto de partida
 
-[Paso 9. La idea inicial, qué existe hoy y por qué pasamos de un enfoque técnico a uno de producto.]
-
 ### 2.1. La idea inicial
+
+Oracle nació como un asistente para consultar un *Second Brain* en Notion mediante una conversación: recuperar y sintetizar información de las notas, con referencias a las páginas de origen. El problema que queríamos resolver era el de los sistemas que crecen sin control hasta que consultarlos deja de ser práctico.
+
 ### 2.2. Qué teníamos construido
+
+- **Una prueba de concepto local:** lee cuatro páginas raíz de Notion (*Projects*, *Areas*, *Resources* y *Archive*), las indexa con RAG y permite chatear con ellas desde una interfaz en Gradio.
+- **Una prueba mínima de despliegue *serverless*** en AWS.
+- **Documentos de producto y arquitectura:** `PRODUCT_BRIEF.md`, `SPEC.md` y `CLOUD_DESIGN.md`, que describen un chatbot con RAG sobre microservicios en AWS.
+
+Todo esto es historia y punto de partida, no una restricción para el MVP.
+
 ### 2.3. El cambio de enfoque
+
+El proyecto nació con un objetivo sobre todo técnico. Al pasar a un enfoque de producto, decidimos hablar con usuarios y analizar alternativas antes de construir. Primero nos centramos en la etapa *Express*, pero la investigación nos llevó a priorizar la organización, como se explica en las secciones siguientes.
 
 ## 3. Usuario objetivo
 
@@ -143,7 +163,7 @@ Estas propuestas del equipo quedaban pendientes de contrastar con usuarios.
 
 ## 6. Competidores y alternativas
 
-Analizamos las alternativas para un asistente que organice notas ya existentes, empezando por Notion. Esta sección resume el [informe completo](reports/Competidores%20asistente%20organizaci%C3%B3n%20notas.md), con datos a 9 de noviembre de 2026.
+Analizamos las alternativas para un asistente que organice notas ya existentes, empezando por Notion. Esta sección resume el [informe completo](https://github.com/ajimenez78/oracle/blob/develop/docs/product_feedback/reports/Competidores%20asistente%20organizaci%C3%B3n%20notas.md), con datos a 9 de noviembre de 2026.
 
 **Conclusión principal:** el mayor competidor es la propia Notion, seguida de Claude o ChatGPT conectados a Notion. Identificamos una oportunidad que no estaría cubierta.
 
@@ -271,8 +291,8 @@ Son las suposiciones que deben cumplirse para que la propuesta de la [sección 7
 
 **Primeros pasos:**
 
-- **H1:** preguntar a las profesoras si su problema son tareas o notas y si siguen un sistema de *Second Brain* o similar.
-- **H2 y H3:** requieren pruebas prácticas que no hemos podido hacer antes de esta presentación.
+- **H1:** al enseñarles la primera versión, preguntar a las profesoras si su problema son tareas o notas y si siguen un sistema de *Second Brain* o similar.
+- **H2 y H3:** requieren pruebas prácticas que haremos con esa primera versión.
 
 ### Hipótesis que dejamos para más adelante
 
@@ -307,7 +327,7 @@ Elegimos organizar porque es donde vimos la señal más clara de un problema sin
 - Todo se ejecuta a petición del usuario, sin sincronización ni cambios automáticos.
 - Una interfaz web sencilla, centrada en la revisión de los cambios.
 
-**Viabilidad técnica.** La API de Notion permite [mover páginas a otra página o a una base de datos](https://developers.notion.com/reference/move-page), pero solo páginas normales; las bases de datos no se pueden mover con esa operación. Por eso, si las notas de los *beta testers* están en bases de datos, quizá haya que organizarlas con propiedades en lugar de moverlas. Es una duda nuestra, que debemos aclarar con ellos antes de construir.
+**Viabilidad técnica.** La API de Notion permite [mover páginas a otra página o a una base de datos](https://developers.notion.com/reference/move-page), pero solo páginas normales; las bases de datos no se pueden mover con esa operación. Por eso, si las notas de los *beta testers* están en bases de datos, quizá haya que organizarlas con propiedades en lugar de moverlas. Es una duda nuestra, que aclararemos con ellos al enseñarles la primera versión.
 
 ### 9.2. Qué modificamos
 
@@ -350,12 +370,69 @@ La IA actuará como asistente para categorizar y organizar las notas: el usuario
 
 ## 10. Riesgos y preguntas abiertas
 
-[Paso 9. Riesgos del MVP y lo que todavía no sabemos.]
+### Riesgos y cómo los abordamos
+
+| Riesgo | Cómo lo abordamos |
+| --- | --- |
+| **Notion puede lanzar un flujo parecido** o cambiar sus funciones y planes | Avanzar en pasos pequeños y mantener el foco en la experiencia completa, para poder adaptarnos |
+| **Una *skill* compartida para Claude** puede cubrir a los usuarios técnicos | Dirigirnos a personas no técnicas, sin instrucciones ni configuración |
+| **Mover notas por error** o que los usuarios no quieran dar permisos de escritura | Solo mover páginas, con aprobación previa y opción de deshacer desde la primera versión |
+| **Sugerencias de poca calidad** de la IA | Preguntar por las notas dudosas y medir cuántas sugerencias se aceptan |
+| **Pocas horas de dedicación del equipo** | Alcance acotado, entregas pequeñas y reutilizar la lectura de Notion que ya existe |
+| **Pocos *beta testers*** | Empezar con las dos profesoras e invitar a participantes de r/secondbrain y a otros usuarios de Notion |
+
+### Preguntas abiertas
+
+- **¿Las profesoras tienen este problema con sus notas?** Su feedback, de segunda mano, se refería a tareas.
+- **¿Sus notas están en páginas o en bases de datos?** La respuesta puede cambiar cómo aplicamos el mapa de organización.
+- **¿Ordenar mejora la recuperación con IA?** No hemos encontrado una comparación directa ([H2](#8-hipótesis)).
+- **¿Volverán a usar Oracle después de la primera limpieza?** ([H5](#8-hipótesis))
+- **¿Hasta dónde llega centrarse solo en Notion?** e3e6, por ejemplo, tiene las notas repartidas entre varias aplicaciones.
 
 ## 11. Próximos pasos
 
-[Paso 9. Validación con las usuarias beta y criterios de éxito.]
+### 11.1. Plan
+
+1. **Construir una primera versión con escritura desde el principio.** Oracle audita, propone el mapa y los movimientos, aplica los que el usuario aprueba y permite deshacerlos.
+2. **Enseñársela a las profesoras (H1).** Comprobar con ella si el problema está en sus tareas o en sus notas, y si estas están en páginas o en bases de datos.
+3. **Ampliar el grupo de *beta testers*.** Invitar a participantes de r/secondbrain y a otros usuarios de Notion.
+4. **Hacer las pruebas prácticas (H2 y H3).** Usar esa versión sobre copias de un espacio de Notion y ajustar el alcance según los resultados.
+5. **Revisar el resultado con el equipo** y decidir los siguientes pasos, incluido el momento de retomar el asistente de trabajo.
+
+### 11.2. Criterios de éxito
+
+*Son umbrales orientativos, propuestos por el equipo y pendientes de ajustar. Con tan pocos usuarios sirven para orientar decisiones, no como medida estadística.*
+
+| Hipótesis | Criterio de éxito |
+| --- | --- |
+| **H1.** El desorden es un problema real | Al menos dos *beta testers* describen una dificultad reciente y concreta con sus notas |
+| **H2.** Ordenar mejora la recuperación | De 10 preguntas hechas a una IA antes y después de ordenar, mejoran al menos 3 y no empeora más de 1 |
+| **H3.** El flujo guiado supera a las alternativas | En el mismo espacio, requiere menos tiempo y menos correcciones que Notion AI y que Claude |
+| **H4.** Los usuarios confían en las sugerencias | Se acepta al menos el 70 % de las sugerencias y se deshace menos del 10 % de los movimientos aplicados |
+| **H5.** Siguen usando Oracle | Al menos la mitad de los *beta testers* vuelve a ejecutarlo por iniciativa propia en las 4 semanas siguientes |
+| **H6.** PARA es un buen punto de partida | Al menos la mitad de los *beta testers* lo mantiene con cambios menores |
 
 ## Referencias
 
-[Paso 9. Hilos de Reddit, herramientas analizadas y documentos internos.]
+**Conversaciones con usuarios**
+
+- [How often does your Second Brain actually get to "Express"?](https://www.reddit.com/r/secondbrain/comments/1x6o0vj/how_often_does_your_second_brain_actually_get_to/) (hilo de r/secondbrain)
+- [Second Brain user in problems and building a…](https://www.reddit.com/r/secondbrain/comments/1xipx4a/second_brain_user_in_problems_and_building_a/) (hilo propio en r/secondbrain)
+- [Organizing my Stuff](https://bezoar.org/posts/2020/0203/organizing-my-stuff/) (artículo compartido por vogelke)
+- [Hippocampus](https://github.com/marcelinollima/hippocampus) (compartido por Virtual_Loss6666)
+
+**Competidores y evidencia externa**
+
+- [Informe completo de competidores](https://github.com/ajimenez78/oracle/blob/develop/docs/product_feedback/reports/Competidores%20asistente%20organizaci%C3%B3n%20notas.md), con las fuentes de cada herramienta analizada
+- [Estudio de IBM sobre archivar el correo (2011)](https://www.technologyreview.com/2011/05/20/194578/stop-organizing-your-e-mail-says-study/)
+- [Estudio con 27 entrevistas sobre conocimiento disperso](https://aisel.aisnet.org/ecis2026/cog_hbis/cog_hbis/38/)
+- [Estudio con 296 personas sobre navegación por carpetas (2010)](https://www.tau.ac.il/education/muse/publications/101.pdf)
+- [Petición en el foro de Obsidian](https://forum.obsidian.md/t/help-finding-a-workflow-for-organizeing-notes-using-a-llm/114174)
+- [*I deleted my second brain*, de Westenberg](https://westenberg.beehiiv.com/p/i-deleted-my-second-brain)
+- [API de Notion: mover una página](https://developers.notion.com/reference/move-page)
+
+**Documentos internos**
+
+- [Entrevistas con usuarios](https://github.com/ajimenez78/oracle/blob/develop/docs/product_feedback/user_interviews.md)
+- [Notas de la reunión de equipo](https://github.com/ajimenez78/oracle/blob/develop/docs/product_feedback/product_recap_meeting_notes.md)
+- [`PRODUCT_BRIEF.md`](https://github.com/ajimenez78/oracle/blob/develop/docs/PRODUCT_BRIEF.md), [`SPEC.md`](https://github.com/ajimenez78/oracle/blob/develop/docs/SPEC.md) y [`CLOUD_DESIGN.md`](https://github.com/ajimenez78/oracle/blob/develop/docs/CLOUD_DESIGN.md)
