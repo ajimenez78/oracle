@@ -7,3 +7,4 @@
 7. Scaffold some hypothesis
 8. Take the decission of which feature implement in MVP
 9. Do a draft if the final document. Imanol Still will add the AI justification part and Roberto will do the last review and redaction.
+10. Build the 10-minute presentation in Spanish from the reviewed document

@@ -7,6 +7,22 @@ To achieve that goal, we need to generate a comprehensive markdown document for 
 - We will need to present the content of this document publically in about 10 minutes. We need o presentation for doing that
 - The content of both markdown and presentation must be in spanish
 - You must follow the plan steps listed in @./PLAN.md
+- The final document is @./product_feedback.md
+
+## Scope of this phase
+- The artifacts of this phase redefine the scope of the whole project.
+- `docs/PRODUCT_BRIEF.md`, `docs/SPEC.md`, `docs/CLOUD_DESIGN.md` and the current code are history and starting context, not constraints. Use them to explain where we come from and what could be reused.
+- Do not update those files during this phase.
+
+## Evidence rules
+- Keep user reports, team interpretations and hypotheses clearly separated.
+- Name the source of each finding. The sample is small and not representative, so never present a finding as true for the majority of users.
+- The feedback from Roberto's contacts is second-hand and is about tasks, not notes. Label it that way.
+- PARA comes from the team and from the proof of concept, not from what users said.
+
+## Team responsibilities in the final document
+- Imanol adds the AI justification.
+- Roberto does the last review and redaction.
 
 
 ## Work that has been done
@@ -15,7 +31,7 @@ Our initial target user is a 'second brain' system user, or a systematic notetak
 
 2. Interview at least one or two potentian users:
 We have post a subreddit in the 'Second brain' Reddit community and we had some conversations with different users to understant their difficulties and what are they doing to solve them. Additionally, we have personally talked with some Notion users that have suggested to us some interesting features. Additionally, the are available to act as beta testers of the MVP
-There is more context of this user feedback in @./user_inteviews.md
+There is more context of this user feedback in @./user_interviews.md
 
 -----------------------
 Note: At this point, the Oracle team had a meeting to put results in common and keep in track. The notes of this conversation are in @./product_recap_meeting_notes.md
