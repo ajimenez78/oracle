@@ -218,9 +218,49 @@ Sus destinatarios serían personas no técnicas, sobre todo en los planes Free y
 - **Casi todas las quejas sobre Notion son anteriores a sus agentes de octubre de 2026.**
 - **Los precios pueden cambiar**, y los marcados "sin verificar" o "en conflicto" no deben citarse como firmes.
 
-## 7. Soluciones candidatas
+## 7. Propuesta de diferenciación
 
-[Paso 6. Breve propuesta de las primeras soluciones seleccionadas.]
+*Esta sección es una propuesta del equipo, todavía sin probar con usuarios.*
+
+**Oracle ordena el Notion que ya tienes, sin que tengas que montar nada, y sin cambiar nada que no hayas aprobado.**
+
+### 7.1. Cómo funcionaría
+
+1. **Audita** el espacio de Notion y detecta dónde hay desorden.
+2. **Propone un mapa** de organización, con PARA como opción de partida y adaptable a cada persona.
+3. **Pregunta solo por las notas dudosas**, para no convertir la revisión en otra tarea pesada.
+4. **Aplica los cambios por lotes**, con aprobación previa y opción de deshacer.
+5. **Mantiene el orden después**, sugiriendo dónde colocar cada nota nueva con el mismo mapa.
+
+### 7.2. En qué nos diferenciamos de cada alternativa
+
+| Alternativa | Qué deja sin cubrir | Qué ofrecería Oracle |
+| --- | --- | --- |
+| **Notion AI** | El agente se puede usar para organizar, pero el usuario tiene que saber pedirlo. Free y Plus solo tienen una prueba | Un flujo ya preparado, de principio a fin, también para esos planes |
+| **Claude o ChatGPT con MCP** | Hay que conectarlo, escribir las instrucciones y controlar los cambios | Sin instrucciones ni configuración técnica, con una cola de revisión |
+| **Mem** | Organiza dentro de su propia aplicación | Sin migrar: las notas siguen en Notion |
+| **Obsidian** | Está fuera de Notion | Trabaja donde ya están las notas de nuestro usuario objetivo |
+| **Plantillas PARA** | Dan una estructura vacía | Parte de las notas que ya existen |
+| **Zapier, n8n o Make** | Las plantillas revisadas clasifican entradas nuevas | Incluye el histórico y usa un mapa común para lo nuevo |
+
+### 7.3. Dónde no competimos
+
+- **Clasificar sin más:** ya está cubierto.
+- **Chat o búsqueda sobre las notas:** Notion AI y los asistentes generales ya lo ofrecen.
+- **Gestión de tareas y prioridades:** es otro mercado, con competidores propios.
+- **Una aplicación de notas nueva:** contradice lo que aprendimos sobre no añadir otro sistema que mantener.
+
+### 7.4. Qué tendría que ser cierto
+
+Esta propuesta solo se sostiene si se cumplen estas condiciones, y ninguna está comprobada:
+
+- **Hay un problema suficiente:** ordenar un Notion existente debe importar a más personas que e3e6, y las profesoras deben tener ese problema también con sus notas, no solo con sus tareas.
+- **Ordenar aporta valor:** si la búsqueda con IA funciona igual de bien sobre notas desordenadas, el argumento se debilita.
+- **El flujo supera a la alternativa gratuita o barata:** debe ser claramente mejor que pedírselo directamente a Notion AI o a Claude.
+- **Los usuarios confían y aceptan:** deben aprobar una parte importante de las sugerencias y permitir que se escriba en su espacio.
+- **Hay un modelo viable:** alguien debe estar dispuesto a pagar, o el coste de la IA debe poder cubrirse en planes Free y Plus.
+
+**Esta diferenciación es sobre todo de experiencia, y por tanto fácil de copiar.** Notion podría lanzar un flujo parecido, y una *skill* compartida podría cubrir a los usuarios técnicos. Además, centrarnos en Notion deja fuera parte del problema de e3e6, que tiene las notas repartidas entre varias aplicaciones.
 
 ## 8. Hipótesis
 
