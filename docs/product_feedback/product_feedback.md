@@ -144,11 +144,79 @@ Eran propuestas del equipo, pendientes de contrastar con usuarios.
 
 ## 6. Competidores y alternativas
 
-[Paso 5. Soluciones existentes, qué cubren y qué huecos dejan.]
+Analizamos las alternativas para un asistente que organice notas ya existentes, empezando por Notion. Esta sección resume el [informe completo](reports/Competidores%20asistente%20organizaci%C3%B3n%20notas.md), con datos a 9 de noviembre de 2026.
+
+**Conclusión principal:** el mayor competidor es la propia Notion, seguida de Claude o ChatGPT conectados a Notion. Queda una oportunidad estrecha, pero no hemos demostrado ni que ese hueco exista ni que organizar sea el problema que hay que resolver.
 
 ### 6.1. Soluciones analizadas
+
+- **Notion AI.** Según Notion, su agente crea y edita páginas y bases de datos, y Autofill clasifica filas. Plan Mode hace preguntas antes de actuar. Una página comercial promete ordenar páginas dispersas, pero la ayuda del agente no menciona mover páginas. Los planes Free y Plus solo tienen una prueba de la IA.
+- **Claude o ChatGPT con Notion MCP.** MCP es el conector oficial que permite a asistentes externos usar Notion, e incluye herramientas para editar y mover páginas. Es la alternativa de "no comprar nada nuevo" para usuarios técnicos, aunque no ofrece un flujo pensado para organizar. No encontramos ningún relato en primera persona de reorganizar a escala un Notion personal.
+- **Mem.** Promete encargarse de organizar, pero dentro de su propia aplicación, y no consta que se conecte con Notion. Hoy se presenta como un "jefe de gabinete" con IA. Interpretamos esto como un cambio de posicionamiento; no conocemos la causa.
+- **Obsidian (Note Companion y Copilot).** Note Companion sugiere o aplica carpeta, etiquetas y título a las notas de la bandeja de entrada. Copilot no es un organizador, pero ejecuta agentes con permisos y vista de cambios. Son competencia indirecta para un producto sobre Notion.
+- **Plantillas PARA.** Forte Labs y Thomas Frank, entre otros, ofrecen plantillas para Notion. Sirven para empezar de cero; a nuestro juicio, no resuelven el desorden que ya existe.
+
+**Otras alternativas, adyacentes o marginales:**
+
+- **Automatizaciones como Zapier, n8n o Make:** clasifican entradas nuevas de Notion, muy cerca de lo que piden las profesoras. Las plantillas revisadas no anuncian limpieza del histórico.
+- **Fabric, Recall y Saner.AI:** prometen evitar la organización manual. Fabric usa Notion como fuente, sin escritura documentada.
+- **Capacities, Tana y Heptabase:** exigen migrar a otra aplicación.
+- **Motion, Reclaim, Todoist, Akiflow y Sunsama:** coinciden en priorizar tareas, no en organizar notas.
+- **Khoj Cloud:** cerró el 15 de abril de 2026.
+
 ### 6.2. Comparativa
+
+| Alternativa | ¿Trabaja en tu Notion? | Reorganizar lo existente (según su documentación) | Preguntas y revisión documentadas | Precio |
+| --- | --- | --- | --- | --- |
+| **Notion AI** | Sí, de forma nativa | Clasifica filas y edita páginas y bases; la ayuda no menciona mover páginas | Plan Mode, aprobación de ediciones e historial | Business, 19,50 € por miembro al mes (sin aclarar el tipo de facturación); Free y Plus, solo prueba |
+| **Claude o ChatGPT con MCP** | Sí, con conector | Claude: herramienta para mover, sin flujo propio. ChatGPT: escritura sin detalle por plan | Depende del cliente | Claude Pro, 20 $ al mes; Free en conflicto; ChatGPT sin verificar |
+| **Mem** | No consta conexión | Auto-organize en su propia aplicación | Sugerir y aceptar | De 9 $ a 199 $ |
+| **Obsidian** | No | Note Companion: bandeja de entrada. Copilot: por instrucciones | Copilot: permisos y vista de cambios | Copilot Free con claves propias; resto sin verificar |
+| **Plantillas PARA** | Se instalan | Estructura vacía | No aplica | Hay gratuitas; de pago sin verificar |
+
 ### 6.3. Oportunidad de diferenciación
+
+*Esta parte es una interpretación nuestra a partir de la documentación revisada.*
+
+Tres argumentos no bastan para diferenciarnos:
+
+- **Clasificar:** ya lo hacen Autofill, Zapier e incluso un proyecto de concurso.
+- **Revisar y deshacer:** aparece en varias herramientas, así que es un requisito, no una ventaja.
+- **Hacer preguntas, sin más:** choca con Plan Mode.
+
+Queda una combinación que no vimos documentada en ninguna herramienta revisada, lo que no prueba que no exista:
+
+1. Auditar un Notion ya existente.
+2. Proponer un mapa, PARA u otro.
+3. Preguntar solo por las notas dudosas.
+4. Aplicar los cambios por lotes, con opción de deshacer.
+5. Mantener el orden después.
+
+Sus destinatarios serían personas no técnicas, sobre todo en los planes Free y Plus, que no incluyen la IA de Notion más allá de una prueba.
+
+**El riesgo es alto:** Notion controla la plataforma y puede cerrar este hueco cambiando sus funciones o sus planes. Una *skill* o plantilla compartida para Claude también podría cubrir gran parte. Además, no sabemos si estos usuarios pagarían.
+
+### 6.4. Qué dice la evidencia externa sobre la demanda
+
+**No encontramos ninguna encuesta que compare captura, organización, recuperación y uso.** Por eso no podemos afirmar que organizar sea el problema principal de la mayoría; lo defendible es que es un dolor recurrente para algunas personas.
+
+| A favor | En contra |
+| --- | --- |
+| e3e6 a veces no escribe porque no sabe dónde guardar | "Basta con buscar": [un estudio de IBM de 2011](https://www.technologyreview.com/2011/05/20/194578/stop-organizing-your-e-mail-says-study/) halló que quienes no archivaban encontraban sus correos más rápido e igual de bien (solo correo, anterior a los modelos de lenguaje). vogelke defiende lo mismo |
+| Dos profesoras valoran la clasificación automática, aunque hablan de tareas | Quizá el dolor esté en recuperar: [un estudio con 27 entrevistas](https://aisel.aisnet.org/ecis2026/cog_hbis/cog_hbis/38/) habla de gestionar, recuperar y aplicar conocimiento disperso, sin medir frecuencias |
+| [Una persona en el foro de Obsidian](https://forum.obsidian.md/t/help-finding-a-workflow-for-organizeing-notes-using-a-llm/114174) pide una IA que reparta contenido y le deje aprobar cada movimiento (anécdota) | Organizar puede ser la trampa: [Westenberg](https://westenberg.beehiiv.com/p/i-deleted-my-second-brain) borró unas 10.000 notas porque el sistema aplazaba el pensar. Un organizador podría hacer más eficiente esa conducta |
+| [Un estudio de 2010](https://www.tau.ac.il/education/muse/publications/101.pdf) con 296 personas halló un 94 % de éxito navegando por carpetas (anterior a los modelos de lenguaje) | Hay quien ya está bien: mrz999 y vogelke tienen métodos que les funcionan |
+
+**La pregunta decisiva sigue abierta:** no hallamos ninguna comparación de la recuperación con IA sobre notas desordenadas y ordenadas. Tampoco hay datos de disposición a pagar, y las cifras de tamaño de mercado difieren unas 2,7 veces y no miden este segmento, así que no las usamos. Nuestra formulación más defendible es organizar para que recuperar y usar las notas funcione mejor, no por tener carpetas ordenadas.
+
+### 6.5. Límites de esta investigación
+
+- **No hicimos pruebas prácticas:** todo sale de documentación y relatos, y que algo no esté documentado no significa que no exista.
+- **No pudimos leer Reddit ni el foro de Notion** en esta investigación, y las comunidades consultadas son sobre todo técnicas.
+- **Algunas afirmaciones se apoyan solo en extractos o resúmenes de páginas.**
+- **La tracción es débil:** hay descargas acumuladas, estrellas y cifras del propio proveedor, sin datos de retención.
+- **Casi todas las quejas sobre Notion son anteriores a sus agentes de octubre de 2026.**
+- **Los precios pueden cambiar**, y los marcados "sin verificar" o "en conflicto" no deben citarse como firmes.
 
 ## 7. Soluciones candidatas
 
