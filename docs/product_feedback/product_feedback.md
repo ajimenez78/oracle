@@ -287,7 +287,7 @@ Son las suposiciones que deben cumplirse para que la propuesta de la [sección 7
 | **H3** | Un flujo guiado es claramente mejor que pedírselo directamente a Notion AI o a Claude | **Sin probar.** Solo comparamos documentación | Reorganizar copias del mismo espacio con las tres opciones y comparar tiempo, errores y correcciones | Que Notion AI o Claude logren un resultado similar con un esfuerzo parecido |
 | **H4** | Los usuarios confiarán en las sugerencias y permitirán escribir en su espacio si pueden revisar y deshacer | **Anecdótica.** Una petición de aprobar cada movimiento | Medir sugerencias aceptadas, cambios revertidos y tiempo de revisión con usuarios reales | Que rechacen muchas sugerencias, no concedan permisos o la revisión les resulte pesada |
 | **H5** | Una vez ordenado el espacio, seguirán usando Oracle para mantenerlo | Los usuarios se quejan del mantenimiento, pero no hay datos de uso continuado | Observar si los *beta testers* siguen usándolo tras la primera limpieza | Que sea un uso puntual |
-| **H6** | PARA es un buen mapa de partida, siempre que se pueda adaptar | Es una idea del equipo, ningún participante lo pidió, pero es la propuesta de Tiago Forte, creador de second brain | Ver cuánto modifican los usuarios el mapa propuesto | Que lo cambien casi siempre o que no lo entiendan |
+| **H6** | La IA puede deducir de las notas existentes una organización adaptada a cada usuario, partiendo de PARA y sin que tenga que configurar nada | Los participantes organizan sus notas de formas muy distintas (mrz999, vogelke, e3e6). PARA es una idea del equipo: ningún participante lo pidió, pero es la propuesta de Tiago Forte, creador de second brain | Ver cuánto modifican los usuarios el mapa propuesto | Que lo cambien casi siempre, que no lo entiendan o que tengan que configurarlo a mano |
 
 **Primeros pasos:**
 
@@ -369,7 +369,7 @@ La IA actuará como asistente para categorizar y organizar las notas: el usuario
 **Dónde la usamos.** Clasificar una nota exige entender su contenido, y las notas desordenadas rara vez lo dejan ver en el título, la carpeta o las etiquetas. Las reglas fijas no bastan para eso; un modelo de lenguaje sí puede:
 
 - **Auditar:** detectar notas mal ubicadas por lo que dicen, no por cómo se llaman.
-- **Proponer el mapa:** adaptar PARA a los temas y proyectos reales de cada persona.
+- **Proponer el mapa:** cada persona organiza sus notas a su manera, así que la IA deduce de las notas que ya existen sus temas y proyectos reales y adapta PARA a ellos, sin configuración ([H6](#8-hipótesis)).
 - **Saber cuándo dudar:** colocar las notas claras y reservar las dudosas para preguntar al usuario.
 - **Explicar cada propuesta:** dar un motivo breve que haga la revisión rápida.
 
