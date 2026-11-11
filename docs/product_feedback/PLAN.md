@@ -8,7 +8,7 @@
 8. Take the decission of which feature implement in MVP
 9. Do a draft of the final document. Imanol Still will add the AI justification part and Roberto will do the last review and redaction.
 10. Build the 10-minute presentation in Spanish from the reviewed document
-    1. Use Google spreadsheets. Maybe you will need a Google Plugin or MCP
+    1. Use Google Slides. Maybe you will need a Google Plugin or MCP
     2. Pick a Google template with a corporate and professional tone
     3. Use an 'Oracle' corporative style, based on Oracle logo in docs/assets
     4. To give you context about the content of the presentation, Ill pass you the initial assignment message:
