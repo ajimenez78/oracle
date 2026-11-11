@@ -1,6 +1,6 @@
 # Oracle: aprendizajes de la fase de Product Feedback
 
-> **Estado:** borrador. Falta la justificación de la IA, que añadirá Imanol, y la revisión final de Roberto.
+> **Estado:** borrador. Falta la revisión final de Roberto.
 
 ## 1. Resumen ejecutivo
 
@@ -366,7 +366,16 @@ Elegimos organizar porque es donde vimos la señal más clara de un problema sin
 
 La IA actuará como asistente para categorizar y organizar las notas: el usuario decide y Oracle no cambia nada sin su aprobación.
 
-[Imanol revisará estas funciones de IA y añadirá la justificación.]
+**Dónde la usamos.** Clasificar una nota exige entender su contenido, y las notas desordenadas rara vez lo dejan ver en el título, la carpeta o las etiquetas. Las reglas fijas no bastan para eso; un modelo de lenguaje sí puede:
+
+- **Auditar:** detectar notas mal ubicadas por lo que dicen, no por cómo se llaman.
+- **Proponer el mapa:** adaptar PARA a los temas y proyectos reales de cada persona.
+- **Saber cuándo dudar:** colocar las notas claras y reservar las dudosas para preguntar al usuario.
+- **Explicar cada propuesta:** dar un motivo breve que haga la revisión rápida.
+
+**Dónde no la usamos.** Mover páginas, aplicar lotes y deshacer son operaciones directas sobre la API de Notion, sin IA. Así los cambios son predecibles y siempre reversibles.
+
+**Qué nos diferencia.** La IA por sí sola no es la ventaja: Notion AI y Claude también la tienen. Lo que aportamos es el flujo que la rodea, y que ese flujo merezca la pena es lo que comprobaremos con [H2 y H3](#8-hipótesis).
 
 ## 10. Riesgos y preguntas abiertas
 
